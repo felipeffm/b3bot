@@ -1,15 +1,22 @@
-# b3bot
- Bot com dados da B3 que envia resultados para email. Analise técnica bem simples, aberto a dúvidas e comits
-Estratégias usadas: Cruzamento de médias móveis e compra em topo com venda em vale (stop loss e stop gain por fibonacci)
-O script gera decisão de compra e venda antes da abertura de mercado com dados diários e envia pro email via airflow. 
+#### Script goal: 
+Receive alerts of financial assets trend change in smartphone.
 
-#main.py
-app.py-> Workflow que faz a consulta dos valores da B3, realiza a analise, armazena resultados gera excel formatado para envio por email
+#### How it works: 
+In a daily frequency, download data with Yahoo Finance API and detect trend changes by 3 moving averaging curves and send an alert by email
 
-#utilitarios
-gera_banco.py -> Script que gera um banco sqlite com dados históricos
-utils_mm.py -> Armazena funções
-dag_airflow.py-> Script para configurar a dag no airflow
+#### Why?
+This project was build for my uncle, who wanted to receive alerts in real time when 
+trend changes happened because it is very time consuming check assets along the day. 
 
 
-Qualquer dúvida podem mandar mensagem, nenhuma path está configurada de forma geral. Para rodar no seu pc precisa de configurações.
+##### Getting Started
+######main.py
+app.py-> download data, analyse data, store results in excel and send email.
+
+#####utils
+gera_banco.py -> generate sqlite with historical data
+utils_mm.py -> functions
+dag_airflow.py-> dag in airflow
+
+##### Examples
+###### Write here
