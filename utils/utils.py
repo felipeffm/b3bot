@@ -14,6 +14,7 @@ from yahooquery import Ticker
 import string
 import plotly.graph_objects as go
 import os
+from utils.constants import dict_state
 
 #modelo cruzamento de medias moveis
 def model_mm(df):  
@@ -182,43 +183,7 @@ def classificar_estado_mm(s, s_curta, s_media, s_longa):
 def classifica_tendencia_mm(s_sequencia_estados):
             
     #decodificando significado da sequencia de estados em ações
-    dict_comp_est = {('curta', 'media', 'longa','curta', 'media', 'longa'): 'indeterminado',
-                    ('curta', 'media', 'longa', 'curta', 'longa', 'media'): 'indeterminado',
-                    ('curta', 'media', 'longa', 'media', 'curta', 'longa'): 'indeterminado',
-                    ('curta', 'media', 'longa', 'media', 'longa', 'curta'): 'indeterminado',
-                    ('curta', 'media', 'longa', 'longa', 'curta', 'media'): 'indeterminado',
-                    ('curta', 'media', 'longa', 'longa', 'media', 'curta'): 'indeterminado',
-                    ('curta', 'longa', 'media', 'curta', 'media', 'longa'): 'baixando',
-                    ('curta', 'longa', 'media', 'curta', 'longa', 'media'): 'indeterminado',
-                    ('curta', 'longa', 'media', 'media', 'curta', 'longa'): 'indeterminado',
-                    ('curta', 'longa', 'media', 'media', 'longa', 'curta'): 'indeterminado',
-                    ('curta', 'longa', 'media', 'longa', 'curta', 'media'): 'subindo',
-                    ('curta', 'longa', 'media', 'longa', 'media', 'curta'): 'indeterminado',
-                    ('media', 'curta', 'longa', 'curta', 'media', 'longa'): 'baixando',
-                    ('media', 'curta', 'longa', 'curta', 'longa', 'media'): 'indeterminado',
-                    ('media', 'curta', 'longa', 'media', 'curta', 'longa'): 'indeterminado',
-                    ('media', 'curta', 'longa', 'media', 'longa', 'curta'): 'indeterminado',
-                    ('media', 'curta', 'longa', 'longa', 'curta', 'media'): 'indeterminado',
-                    ('media', 'curta', 'longa', 'longa', 'media', 'curta'): 'indeterminado',
-                    ('media', 'longa', 'curta', 'curta', 'media', 'longa'): 'indeterminado',
-                    ('media', 'longa', 'curta', 'curta', 'longa', 'media'): 'indeterminado',
-                    ('media', 'longa', 'curta', 'media', 'curta', 'longa'): 'baixando',
-                    ('media', 'longa', 'curta', 'media', 'longa', 'curta'): 'indeterminado',
-                    ('media', 'longa', 'curta', 'longa', 'curta', 'media'): 'indeterminado',
-                    ('media', 'longa', 'curta', 'longa', 'media', 'curta'): 'subindo',
-                    ('longa', 'curta', 'media', 'curta', 'media', 'longa'): 'indeterminado',
-                    ('longa', 'curta', 'media', 'curta', 'longa', 'media'): 'indeterminado',
-                    ('longa', 'curta', 'media', 'media', 'curta', 'longa'): 'indeterminado',
-                    ('longa', 'curta', 'media', 'media', 'longa', 'curta'): 'indeterminado',
-                    ('longa', 'curta', 'media', 'longa', 'curta', 'media'): 'indeterminado',
-                    ('longa', 'curta', 'media', 'longa', 'media', 'curta'): 'subindo',
-                    ('longa', 'media', 'curta', 'curta', 'media', 'longa'): 'indeterminado',
-                    ('longa', 'media', 'curta', 'curta', 'longa', 'media'): 'indeterminado',
-                    ('longa', 'media', 'curta', 'media', 'curta', 'longa'): 'indeterminado',
-                    ('longa', 'media', 'curta', 'media', 'longa', 'curta'): 'indeterminado',
-                    ('longa', 'media', 'curta', 'longa', 'curta', 'media'): 'baixando',
-                    ('longa', 'media', 'curta', 'longa', 'media', 'curta'): 'indeterminado'}
-
+    dict_comp_est = c.dict_state
     s_sequencia_estados = pd.Series(s_sequencia_estados)
 
     comportamento = s_sequencia_estados.map(dict_comp_est)
